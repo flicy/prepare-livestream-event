@@ -14,7 +14,7 @@ Keep the workflow semi-automatic. Create drafts and assets aggressively, but nev
 ## Workflow
 
 1. **Create the event content page first**
-   - Source from the user's brief, pasted content, Notion/page URL, existing Markdown, or `assets/event-template.yml`.
+   - Source from the user's brief, pasted content, Notion/page URL, existing Markdown, or `templates/event-template.yml`.
    - If a referenced URL is unavailable, say that and use the pasted content as the source of truth.
    - Normalize the event into the schema in `references/event-schema.md`.
    - Create or update a content page before poster work. Prefer Notion when the user provides access; otherwise create a Markdown page in the working folder.
@@ -84,11 +84,9 @@ YYYY-MM-DD-event-slug/
 - `references/poster-sizes.md`: WeChat, Xiaohongshu, and Jike poster/export sizes.
 - `references/copywriting-templates.md`: copy templates for posts and group messages.
 - `references/publishing-adapters.md`: automation boundaries and platform adapter checklist.
-- `references/productization-roadmap.md`: positioning, GitHub release checklist, and needed inputs.
-- `assets/event-template.yml`: editable human-readable event brief template.
-- `assets/event-template.json`: dependency-free event template for scripts and automation.
-- `assets/brand/growthos-logo-draft.png`: draft GrowthOS logo reference, pending a standardized wordmark/logo file.
-- `assets/examples/real-cases/`: real GrowthOS poster references for style and layout direction.
+- `templates/event-template.yml`: editable human-readable event brief template.
+- `templates/event-template.json`: dependency-free event template for scripts and automation.
+- `examples/`: public overview images, poster directions, and real GrowthOS poster references.
 - `scripts/normalize_event.py`: normalize JSON/YAML event input.
 - `scripts/plan_image_sizes.py`: output target dimensions and generation/crop guidance.
 - `scripts/build_poster_prompts.py`: generate the five-poster prompt pack.

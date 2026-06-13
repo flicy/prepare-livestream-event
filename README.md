@@ -1,56 +1,39 @@
-# Prepare Livestream Event
+# Prepare Livestream Event · 线上直播活动发布 Skill
 
-Version: 1.0
+**中文** | [English](README.en.md)
 
-把线上直播活动 brief、Notion 页面或活动草稿整理成活动内容页、五版海报方向、公众号/小红书图文草稿、直播预约链接和微信群预告的 Codex Skill。
+> 一个主题，一套素材，一次确认后再发布。
+> One brief, one launch package, publish only after approval.
 
-A Codex Skill for turning livestream event briefs into event pages, poster directions, WeChat/Xiaohongshu drafts, live reservation links, and group announcement copy.
+一个用于准备线上直播活动的 Codex Skill：把活动 brief、Notion 页面或草稿内容，整理成活动内容页、五版海报方向、公众号/小红书图文草稿、直播预约链接记录和微信群预告。
 
-GitHub: https://github.com/flicy/prepare-livestream-event
+它不是自动发帖机器人。它更像一个活动运营搭子：先把内容、图片、文案和发布清单准备好，再让人确认，最后再发布。
 
-## 省流图文版
+诞生于 GrowthOS / Coding GrowthTALK 的真实活动准备流程。
 
-![Prepare Livestream Event overview](assets/examples/readme-intro-screenshot.png)
+![省流图文版](examples/overview.png)
 
-可编辑版本：
+## 里面有什么
 
-- PNG: `assets/examples/readme-intro-screenshot.png`
-- Figma-importable SVG: `assets/examples/readme-intro-editable.svg`
-- AI visual overview: `assets/examples/readme-visual-overview.png`
+- **活动内容页** — 把主题、时间、嘉宾、议程、适合人群、CTA 和链接整理成统一结构。
+- **五版海报方向** — 为 Image 2.5 / 当前可用图片模型准备五种不同视觉方向的 prompt。
+- **平台尺寸表** — 覆盖公众号头图、正文海报、小红书 3:4 封面、方图和横图。
+- **图文文案模板** — 公众号、小红书、微信群预热、最终群通知都先生成草稿。
+- **发布确认机制** — 创建草稿可以自动化，但公众号发布、小红书发布、直播预约和微信群发送都必须人工确认。
 
-把 SVG 拖进 Figma 后，可以继续修改文字、颜色、形状和版式。
+## 示例
 
-## 介绍文案
+| 五版海报方向 | 真实 GrowthOS 案例 |
+|---|---|
+| ![](examples/poster-directions.png) | ![](examples/real-growthos-cases.png) |
 
-做了一个 Codex Skill：Prepare Livestream Event。
+这套 Skill 默认参考 GrowthOS 当前的活动视觉语言：纸张拼贴、橙黑对比、超大标题、直播时间条、联合主办方、真实讨论问题、发起人信息和二维码 CTA。
 
-起因很简单：我自己在做 GrowthOS 和 Coding GrowthTALK 这类线上直播活动时，发现每次准备活动都要重复很多事情：先整理活动内容页，再做海报，再写公众号和小红书预告，再创建直播预约链接，最后还要给微信群写预热和正式通知。
+如果你有自己的社群风格，可以直接改 `references/growthos-brand.md` 和 `references/copywriting-templates.md`。
 
-这个 Skill 会帮你把一场线上直播活动从「一个主题/一页 Notion/一段活动 brief」，快速整理成一个可发布的活动包：活动内容页、五版不同风格的海报生成 prompt、公众号图文草稿、小红书图文草稿、直播预约链接记录和微信群预告文案。
+## 安装
 
-如果你也在做社群直播、线上分享、AI Builder 活动、产品共创会、训练营公开课，可以拿来试试。也欢迎把不好用的 case 丢给我，比如海报不像你的社群风格、中文排版太挤、公众号文案太 AI、小红书标题不够抓人、二维码位置不对、直播链接关联不顺。这个项目会继续迭代，我想把它做成一个真正能稳定支撑社群活动发布的小工具。
-
-省流图文版：见上图
-
-GitHub: https://github.com/flicy/prepare-livestream-event
-
-真实实践：下面两张 GrowthOS 活动海报已经放进仓库作为公开案例。
-
-## What It Does
-
-- Normalizes a livestream event brief into a reusable event schema.
-- Creates an event content page before poster work.
-- Generates five Image 2.5-ready poster directions:
-  `growthos-minimal`, `agent-architecture`, `global-livestream`, `fde-enterprise`, and `xiaohongshu-bold`.
-- Plans platform image sizes for WeChat Official Account, Xiaohongshu, and Jike.
-- Produces WeChat Official Account, Xiaohongshu, warm-up, and WeChat group announcement drafts.
-- Keeps Figma refinement in the loop for title layout, QR codes, typography, and safe areas.
-- Prioritizes live reservation workflows for WeChat Channels and Xiaohongshu Live.
-- Keeps publishing, live reservation creation, and WeChat group sending behind explicit human confirmation.
-
-## Install
-
-Recommended: install directly from GitHub into your Codex skills directory.
+适用于支持 `SKILL.md` 约定的 AI agent。推荐直接安装到 Codex skills 目录：
 
 ```bash
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
@@ -58,177 +41,84 @@ git clone https://github.com/flicy/prepare-livestream-event.git \
   "${CODEX_HOME:-$HOME/.codex}/skills/prepare-livestream-event"
 ```
 
-If you already have the repo locally, copy the folder:
-
-```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-cp -R ./prepare-livestream-event "${CODEX_HOME:-$HOME/.codex}/skills/"
-```
-
-Restart Codex after installation so the new skill is loaded.
-
-Use it in Codex:
-
-```text
-Use $prepare-livestream-event to prepare a livestream event launch package for this activity brief.
-```
-
-中文调用示例：
+重启 Codex 后，直接说：
 
 ```text
 用 prepare-livestream-event，根据这个活动主题生成内容页、五版海报 prompt、公众号文案、小红书文案和微信群预告。
 ```
 
-## Quick Start
-
-Use the dependency-free JSON template:
+## 快速试用
 
 ```bash
-python3 scripts/normalize_event.py assets/event-template.json -o /tmp/event.json
+python3 scripts/normalize_event.py templates/event-template.json -o /tmp/event.json
 python3 scripts/plan_image_sizes.py > /tmp/poster-sizes.json
 python3 scripts/build_poster_prompts.py /tmp/event.json -o /tmp/poster-prompts.json
 ```
 
-Then use `/tmp/poster-prompts.json` with your image generation workflow. After choosing a poster direction, refine final text, QR codes, and platform safe areas in Figma or your preferred design tool.
+然后把 `/tmp/poster-prompts.json` 接到你的图片生成流程。选定海报方向后，再进 Figma 或其他设计工具处理最终文字、二维码和安全区。
 
-`assets/event-template.yml` is also included as a more human-readable template. YAML input requires PyYAML; JSON works with the Python standard library.
-
-## Structure
+## 文件结构
 
 ```text
 .
-├── SKILL.md
 ├── README.md
-├── LICENSE
+├── README.en.md
+├── SKILL.md
+├── LICENSE.md
 ├── agents/
 │   └── openai.yaml
-├── assets/
-│   ├── brand/
+├── examples/
+│   ├── overview.png
+│   ├── overview-editable.svg
+│   ├── poster-directions.png
+│   └── real-growthos-cases.png
+├── templates/
 │   ├── event-template.json
-│   ├── event-template.yml
-│   └── examples/
+│   └── event-template.yml
 ├── references/
-│   ├── copywriting-templates.md
 │   ├── event-schema.md
 │   ├── growthos-brand.md
 │   ├── poster-sizes.md
-│   ├── productization-roadmap.md
+│   ├── copywriting-templates.md
 │   └── publishing-adapters.md
 └── scripts/
-    ├── build_poster_prompts.py
     ├── normalize_event.py
-    └── plan_image_sizes.py
+    ├── plan_image_sizes.py
+    └── build_poster_prompts.py
 ```
 
-The installable skill is the repository root. Example images are included because this skill is easier to understand when the visual target is visible.
+`examples/` 是给人看的公开案例；`templates/`、`references/` 和 `scripts/` 是 Skill 真正工作时会用到的材料。
 
-## Poster Examples
+## 改成自己的社群风格
 
-These five sample posters are visual references for the built-in directions.
+最常改的地方：
 
-![Poster examples contact sheet](assets/examples/contact-sheet.png)
+- `templates/event-template.yml`：你的常规活动字段。
+- `references/growthos-brand.md`：品牌色、视觉气质、海报风格。
+- `references/copywriting-templates.md`：公众号、小红书和群消息语气。
+- `references/poster-sizes.md`：如果你的渠道尺寸不同，在这里改。
+- `examples/`：替换成你的真实活动案例，让 Skill 更懂你的风格。
 
-Individual files:
+## 反馈不好用的 case
 
-- `assets/examples/poster-growthos-minimal.png`
-- `assets/examples/poster-agent-architecture.png`
-- `assets/examples/poster-global-livestream.png`
-- `assets/examples/poster-fde-enterprise.png`
-- `assets/examples/poster-xiaohongshu-bold.png`
-
-For production, treat image-generation output as concept art. Final Chinese typography, QR codes, and platform safe-area crops should be checked in Figma.
-
-## Real GrowthOS Cases
-
-These real GrowthOS activity posters are included as public reference cases. Both are close to the Xiaohongshu 3:4 cover format and work well as master vertical posters for livestream promotion.
-
-![Real GrowthOS poster references](assets/examples/real-cases/real-cases-sheet.png)
-
-Case files:
-
-- `assets/examples/real-cases/coding-growthtalk-issue-9.png`
-- `assets/examples/real-cases/coding-growthtalk-agent-fde.png`
-
-The shared visual language is warm paper collage, orange-black contrast, oversized title, live time row, organizer line, practical discussion bullets, host card, and QR-driven CTA.
-
-## Platform Sizes
-
-Core export targets:
-
-- WeChat Official Account cover: `900 x 383`, with the key title inside the center `383 x 383` safe square.
-- WeChat secondary cover: `200 x 200`.
-- WeChat article poster: `900 x 500`, `750 x 1334`, or `800 x 800`.
-- Xiaohongshu main cover: `1080 x 1440`, preferred for event posters.
-- Xiaohongshu square: `1080 x 1080`.
-- Xiaohongshu horizontal fallback: `1200 x 900`.
-
-See `references/poster-sizes.md` for details.
-
-## Customize For Your Community
-
-Most teams should change these files first:
-
-- `assets/event-template.yml`: recurring livestream event structure and default fields.
-- `assets/event-template.json`: dependency-free template for scripts and automation.
-- `references/growthos-brand.md`: colors, fonts, tone, visual motifs, logo TODO, and CTA language.
-- `references/copywriting-templates.md`: WeChat, Xiaohongshu, group, and short-post templates.
-- `references/poster-sizes.md`: platform sizes if your channels use different dimensions.
-- `references/publishing-adapters.md`: browser-assisted draft workflow, account tools, and manual fallback.
-
-To adapt this from GrowthOS to another livestream brand:
-
-1. Replace the palette and typography in `references/growthos-brand.md`.
-2. Replace or remove `assets/brand/growthos-logo-draft.png`.
-3. Rewrite the community tone phrases and CTA language.
-4. Update the default host, organizer, QR placeholders, and link fields in the event templates.
-5. Rewrite copy templates so the voice sounds like your brand.
-6. Keep the confirmation gates unless your team has a separate approval system.
-
-## Publishing Notes
-
-WeChat Official Account, Xiaohongshu, live reservation platforms, and WeChat groups all have different access models. This skill defaults to browser-assisted draft creation for WeChat Official Account and Xiaohongshu.
-
-Recommended adapter order:
-
-1. Browser-assisted draft creation with the user's logged-in account.
-2. Manual publishing package with Markdown, images, and checklist.
-3. Official API or connected app tool, only when the account and API access are clearly available.
-
-Priority live reservation platforms:
-
-- WeChat Channels.
-- Xiaohongshu Live.
-
-Do not publish, schedule, reserve, or send from a real account unless the operator explicitly approves the final draft.
-
-## Report Bad Outputs
-
-When the generated event package fails, ask Codex to capture an issue draft:
+欢迎把失败案例整理成 issue。比如：
 
 ```text
-Use $prepare-livestream-event. Report to Issue: the Xiaohongshu poster text is too dense, the WeChat cover safe area is wrong, and the group announcement sounds too generic.
+Use $prepare-livestream-event. Report to Issue:
+小红书海报文字太密，公众号头图标题没有放进中间安全区，群预告文案太像 AI。
 ```
 
-Useful bad cases:
+特别有价值的坏 case：
 
-- Poster does not match the target community style.
-- Chinese text is unreadable or too crowded.
-- WeChat cover title is outside the center square safe area.
-- Xiaohongshu title is not strong enough.
-- The copy sounds too generic or too AI-like.
-- QR code / live reservation link / article link is not associated correctly.
-- Browser-assisted draft steps are unclear or blocked.
+- 海报不像你的社群风格。
+- 中文标题太挤或不可读。
+- 公众号头图没有照顾中间方形安全区。
+- 小红书标题不够抓人。
+- 文案太空、太 AI、没有真实活动感。
+- 二维码、直播预约链接、公众号文章链接没有关联清楚。
 
-Do not include private QR codes, account screenshots, group links, or unpublished event details in public issues unless you explicitly intend to share them.
+不要在公开 issue 里放私密二维码、群链接、账号后台截图或未公开活动信息。
 
-## Iteration History
+## 协议
 
-- `1.0`: Initial GrowthOS livestream event launch workflow. Includes event schema, five poster directions, platform copy templates, browser-assisted publishing notes, real GrowthOS poster references, and GitHub-ready installation.
-
-## English Summary
-
-`prepare-livestream-event` helps community operators and AI builders prepare repeatable livestream launch packages. It turns an event idea or source page into a structured event page, five poster directions, platform-specific copy, live reservation link tracking, and final WeChat group announcement drafts. It is intentionally semi-automatic: drafts and assets are generated quickly, but publishing and group sending stay behind human confirmation.
-
-## License
-
-MIT License. See `LICENSE`.
+MIT License. See [LICENSE.md](LICENSE.md).

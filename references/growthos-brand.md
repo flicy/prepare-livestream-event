@@ -29,14 +29,6 @@ Extracted from `https://start.growthos.cn/`:
 - Prefer strong hierarchy: short title, clear subtitle, small factual metadata.
 - Avoid dense body text on posters. Put long descriptions in the article page.
 
-## Logo status
-
-Current draft asset:
-
-- `assets/brand/growthos-logo-draft.png`
-
-This file is a temporary reference, not a finalized brand standard. Keep a TODO to replace it with an approved GrowthOS logo / wordmark package before a polished public release.
-
 ## Visual motifs
 
 - Warm off-white background, thin grid, subtle system lines.
@@ -47,10 +39,10 @@ This file is a temporary reference, not a finalized brand standard. Keep a TODO 
 
 ## Real poster references
 
-The examples in `assets/examples/real-cases/` show the current GrowthOS activity poster language:
+The examples in `examples/` show the current GrowthOS activity poster language:
 
-- `coding-growthtalk-issue-9.png`: calmer collage layout, large black title, orange brush accents, long-form activity detail, host card, two QR CTAs.
-- `coding-growthtalk-agent-fde.png`: bolder hand-drawn social cover, oversized title, robot/marker-style decoration, discussion bullets, target audience card, QR CTA band.
+- `growthtalk-issue-9.png`: calmer collage layout, large black title, orange brush accents, long-form activity detail, host card, two QR CTAs.
+- `growthtalk-agent-fde.png`: bolder hand-drawn social cover, oversized title, robot/marker-style decoration, discussion bullets, target audience card, QR CTA band.
 
 Shared patterns to preserve:
 
@@ -74,5 +66,6 @@ Replace these items first:
 3. Motifs: name 3-5 recurring visual symbols or layout habits.
 4. Tone: write 5-8 phrases that sound like the community.
 5. CTA: replace WeChat/QR language with the community's own channels.
+6. Examples: replace `examples/` images with real posters from the target community.
 
 Then rerun `scripts/build_poster_prompts.py` after updating the brand summary in the prompt or reference.
