@@ -1,0 +1,54 @@
+{
+  "event": {
+    "series": "Coding GrowthTALK",
+    "title": "AI+Agent上岗：从 Agent Demo 到真正落地，FDE 到底解决了什么问题？",
+    "subtitle": "AI 出海 · 周五碰个头",
+    "time": "每周五晚 19:00-21:00",
+    "location": "线上直播",
+    "organizers": ["GrowthOS", "Datawhale", "launch 100"],
+    "host": {
+      "name": "Chris（崔莹）",
+      "bio": "Data PM｜AI Builder｜GrowthOS 主理人｜Datawhale「AI出海碰个头」发起人"
+    },
+    "topic_description": "AI Agent 的 Demo 越来越容易做出来，但真正进入业务现场、被真实用户使用、持续交付结果，仍然很难。",
+    "goals": [
+      "把 Agent 从「能演示」到「能上岗」的关键路径讲清楚",
+      "拆解 FDE 在企业 AI 落地中真正补上的能力缺口",
+      "讨论 Agent 落地中的业务理解、流程嵌入、系统对接与反馈闭环"
+    ],
+    "audience": [
+      "正在做 AI Agent、工作流、自动化工具的 Builder",
+      "关注 ToB AI、企业 AI 落地、AI 商业化的产品 / 增长 / 运营同学",
+      "想把 Vibe Coding 作品从 Demo 推向真实使用场景的人"
+    ],
+    "questions": [
+      "为什么 Agent Demo 很容易，真正落地却很难？",
+      "FDE 到底解决的是什么问题？",
+      "一个 Agent 想从“能演示”变成“能上岗”，中间缺哪些能力？",
+      "AI Builder 如何从做 Demo 走向做可交付的业务系统？"
+    ],
+    "agenda": [
+      "开场：为什么这期聊 FDE 与 Agent 落地",
+      "概念拆解：FDE 不是售前换皮，它到底在解决什么问题",
+      "关键矛盾：Agent Demo 到业务落地，中间缺了什么",
+      "开放讨论：AI Builder 如何从 Demo 思维走向交付思维"
+    ],
+    "guests": [
+      "企业 AI 落地产品、技术和服务方伙伴",
+      "WorkBuddy 渠道生态伙伴",
+      "AI 营销、AI 销售、ToB 服务、企业 AI 落地实践者"
+    ],
+    "community_intro": "GrowthOS｜AI增长+Coding 是一群擅长 AI、又愿意动手的行动派聚集地。",
+    "links": {
+      "live_reservation": "",
+      "wechat_article": "",
+      "xiaohongshu_post": "",
+      "jike_post": ""
+    },
+    "assets": {
+      "wechat_qr": "",
+      "group_qr": "",
+      "selected_poster": ""
+    }
+  }
+}

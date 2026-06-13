@@ -1,0 +1,7 @@
+interface:
+  display_name: "Prepare Livestream Event"
+  short_description: "Prepare livestream posters, drafts, and links"
+  brand_color: "#E85D3A"
+  default_prompt: "Use $prepare-livestream-event to prepare an event page, poster prompt pack, platform copy, live links, and publishing checklist for this livestream."
+policy:
+  allow_implicit_invocation: true
