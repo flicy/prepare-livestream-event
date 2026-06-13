@@ -13,6 +13,9 @@ Born from the real GrowthOS / Coding GrowthTALK event preparation workflow.
 
 ![overview](examples/overview.png)
 
+Local showcase page: open `examples/showcase.html` directly in your browser.  
+Launch copy examples: see `examples/promo-copy.md`.
+
 ## What's Inside
 
 - **Event page** — Normalizes topic, time, guests, agenda, audience, CTA, and links into one structure.
@@ -70,6 +73,8 @@ Use `/tmp/poster-prompts.json` with your image generation workflow. After choosi
 ├── examples/
 │   ├── overview.png
 │   ├── overview-editable.svg
+│   ├── showcase.html
+│   ├── promo-copy.md
 │   ├── poster-directions.png
 │   └── real-growthos-cases.png
 ├── templates/

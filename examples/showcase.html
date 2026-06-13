@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prepare Livestream Event · 线上直播活动发布 Skill</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #171513;
+      --muted: #6f6860;
+      --paper: #f7f2e9;
+      --paper-strong: #fffaf1;
+      --line: #ded3c4;
+      --orange: #ef5525;
+      --orange-dark: #c93816;
+      --blue: #1f5f9f;
+      --green: #188f6a;
+      --black: #111111;
+      --shadow: 0 18px 50px rgba(23, 21, 19, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(17, 17, 17, 0.04) 1px, transparent 1px) 0 0 / 34px 34px,
+        linear-gradient(rgba(17, 17, 17, 0.035) 1px, transparent 1px) 0 0 / 34px 34px,
+        var(--paper);
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+      background: rgba(247, 242, 233, 0.92);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 18px 0 0 var(--ink), 36px 0 0 var(--blue);
+      flex: 0 0 auto;
+    }
+
+    .brand span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .nav a:hover {
+      color: var(--orange-dark);
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 72px 22px 48px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--orange-dark);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 4px;
+      background: var(--orange);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .hero-subtitle {
+      margin: 24px 0 0;
+      max-width: 650px;
+      color: #312d28;
+      font-size: clamp(18px, 2.4vw, 24px);
+      line-height: 1.58;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      background: var(--ink);
+      color: #fffaf1;
+      font-weight: 800;
+      box-shadow: 5px 5px 0 var(--orange);
+    }
+
+    .button.secondary {
+      background: var(--paper-strong);
+      color: var(--ink);
+      box-shadow: none;
+    }
+
+    .hero-visual {
+      position: relative;
+      transform: rotate(1deg);
+    }
+
+    .hero-visual img {
+      border: 2px solid rgba(17, 17, 17, 0.12);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual::after {
+      content: "publish only after approval";
+      position: absolute;
+      right: -18px;
+      bottom: 26px;
+      max-width: 190px;
+      padding: 12px 14px;
+      transform: rotate(-5deg);
+      background: var(--orange);
+      color: #fffaf1;
+      font-size: 16px;
+      line-height: 1.25;
+      font-weight: 900;
+      box-shadow: 0 10px 24px rgba(201, 56, 22, 0.22);
+    }
+
+    .band {
+      border-top: 1px solid var(--line);
+      background: rgba(255, 250, 241, 0.64);
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 58px 22px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .section-note {
+      max-width: 430px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .flow-step {
+      min-height: 150px;
+      padding: 18px 14px;
+      border: 1px solid var(--line);
+      background: var(--paper-strong);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .flow-step strong {
+      font-size: 20px;
+      line-height: 1.18;
+    }
+
+    .flow-step span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .flow-step:nth-child(2) {
+      border-top: 6px solid var(--orange);
+    }
+
+    .flow-step:nth-child(4) {
+      border-top: 6px solid var(--blue);
+    }
+
+    .flow-step:nth-child(6) {
+      border-top: 6px solid var(--green);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .media-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fffaf1;
+      box-shadow: 0 14px 38px rgba(23, 21, 19, 0.08);
+    }
+
+    .media-panel figcaption {
+      padding: 14px 16px 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper-strong);
+    }
+
+    .checklist b {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: var(--orange);
+      color: #fffaf1;
+      font-size: 15px;
+    }
+
+    .checklist strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 18px;
+    }
+
+    .checklist span {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .codebox {
+      margin: 0;
+      padding: 22px;
+      border-radius: 8px;
+      background: #111;
+      color: #fff6e5;
+      overflow-x: auto;
+      font: 14px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .notice {
+      border-left: 8px solid var(--orange);
+      padding: 20px 22px;
+      background: var(--paper-strong);
+      color: #302b25;
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 650;
+    }
+
+    .footer {
+      padding: 34px 22px 48px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .gallery,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-visual {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .hero,
+      .section {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-note {
+        margin-top: 12px;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual::after {
+        right: 10px;
+        bottom: 10px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="https://github.com/flicy/prepare-livestream-event">
+          <i class="brand-mark" aria-hidden="true"></i>
+          <span>Prepare Livestream Event</span>
+        </a>
+        <nav class="nav" aria-label="页面导航">
+          <a href="#workflow">流程</a>
+          <a href="#examples">案例</a>
+          <a href="#install">安装</a>
+          <a href="#copy">发文介绍</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Codex Skill for livestream launch</div>
+          <h1>线上直播活动，一次准备成套发布素材。</h1>
+          <p class="hero-subtitle">把活动 brief、Notion 页面或草稿内容，整理成活动内容页、五版海报方向、公众号/小红书图文草稿、直播预约链接记录和微信群预告。</p>
+          <div class="hero-actions">
+            <a class="button" href="https://github.com/flicy/prepare-livestream-event">打开 GitHub</a>
+            <a class="button secondary" href="./promo-copy.md">查看发文文案</a>
+          </div>
+        </div>
+        <figure class="hero-visual">
+          <img src="./overview.png" alt="Prepare Livestream Event 省流图文版介绍">
+        </figure>
+      </section>
+
+      <section class="band" id="workflow">
+        <div class="section">
+          <div class="section-head">
+            <h2>它不是自动发帖机器人。</h2>
+            <p class="section-note">它更像活动运营搭子：先把内容、图片、文案和发布清单准备好，再让人确认，最后再发布。</p>
+          </div>
+          <div class="flow" aria-label="Prepare Livestream Event 工作流">
+            <div class="flow-step">
+              <strong>活动 brief</strong>
+              <span>输入主题、时间、嘉宾、议程、CTA、二维码和参考页面。</span>
+            </div>
+            <div class="flow-step">
+              <strong>内容创建页</strong>
+              <span>先结构化活动信息，避免海报和文案各写各的。</span>
+            </div>
+            <div class="flow-step">
+              <strong>五版海报</strong>
+              <span>生成适配 Image 2.5 / 图片模型的风格 prompt。</span>
+            </div>
+            <div class="flow-step">
+              <strong>Figma 精修</strong>
+              <span>把最终标题、安全区、二维码和文字层变成可调整素材。</span>
+            </div>
+            <div class="flow-step">
+              <strong>图文草稿</strong>
+              <span>公众号、小红书、预热群消息和最终群公告一次起草。</span>
+            </div>
+            <div class="flow-step">
+              <strong>确认发布</strong>
+              <span>直播预约链接和公开发布都保留人工确认闸门。</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="examples">
+        <div class="section-head">
+          <h2>用真实活动反复打磨。</h2>
+          <p class="section-note">默认参考 GrowthOS / Coding GrowthTALK 的视觉语言：纸张拼贴、橙黑对比、超大标题、直播时间条、联合主办方和二维码 CTA。</p>
+        </div>
+        <div class="gallery">
+          <figure class="media-panel">
+            <img src="./poster-directions.png" alt="五版海报方向示例">
+            <figcaption>五种不同海报方向：极简增长、Agent 架构、出海直播、企业落地、小红书强标题。</figcaption>
+          </figure>
+          <figure class="media-panel">
+            <img src="./real-growthos-cases.png" alt="GrowthOS 历史活动海报案例">
+            <figcaption>历史 GrowthOS 海报作为公开案例，帮助 Skill 保持真实活动感。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="band" id="install">
+        <div class="section split">
+          <div>
+            <h2>安装后直接在 Codex 里调用。</h2>
+            <p class="section-note">把它 clone 到本地 skills 目录，重启 Codex 后，用一句话就能开始准备一场线上直播活动。</p>
+            <div class="notice">适合持续做直播分享、线上沙龙、社群共创、产品发布、AI Builder 活动的团队。</div>
+          </div>
+          <pre class="codebox"><code>mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+git clone https://github.com/flicy/prepare-livestream-event.git \
+  "${CODEX_HOME:-$HOME/.codex}/skills/prepare-livestream-event"</code></pre>
+        </div>
+      </section>
+
+      <section class="section" id="copy">
+        <div class="section-head">
+          <h2>发布前，它会先帮你把这些准备好。</h2>
+          <p class="section-note">自动化的边界很清楚：能自动生成草稿，不能越过你的确认去公开发布。</p>
+        </div>
+        <ul class="checklist">
+          <li>
+            <b>01</b>
+            <div><strong>活动内容页</strong><span>把主题、目标、适合人群、议程、嘉宾、链接和发布状态沉淀下来。</span></div>
+          </li>
+          <li>
+            <b>02</b>
+            <div><strong>海报 prompt 包</strong><span>默认生成五版风格，方便你快速选方向，再进 Figma 修细节。</span></div>
+          </li>
+          <li>
+            <b>03</b>
+            <div><strong>公众号和小红书草稿</strong><span>分别适配长图文和信息流语气，保留链接、二维码和直播预约占位。</span></div>
+          </li>
+          <li>
+            <b>04</b>
+            <div><strong>微信群预告</strong><span>确认海报和链接后，生成能直接发群的一小段活动介绍。</span></div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Prepare Livestream Event · MIT License · GitHub: github.com/flicy/prepare-livestream-event
+    </footer>
+  </div>
+</body>
+</html>

@@ -13,6 +13,9 @@
 
 ![省流图文版](examples/overview.png)
 
+本地展示页：双击打开 `examples/showcase.html`。  
+发布介绍文案：见 `examples/promo-copy.md`。
+
 ## 里面有什么
 
 - **活动内容页** — 把主题、时间、嘉宾、议程、适合人群、CTA 和链接整理成统一结构。
@@ -70,6 +73,8 @@ python3 scripts/build_poster_prompts.py /tmp/event.json -o /tmp/poster-prompts.j
 ├── examples/
 │   ├── overview.png
 │   ├── overview-editable.svg
+│   ├── showcase.html
+│   ├── promo-copy.md
 │   ├── poster-directions.png
 │   └── real-growthos-cases.png
 ├── templates/
